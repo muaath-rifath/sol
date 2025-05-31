@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Home Automation Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏠 Smart Home Hub</h1>
+            <div class="status-indicators">
+                <span id="mqtt-status" class="status offline">MQTT: Disconnected</span>
+                <span id="client-count" class="status">Connected</span>
+            </div>
+        </header>
+
+        <main>
+            <!-- AI Command Section -->
+            <section class="ai-section">
+                <h2>🤖 AI Assistant</h2>
+                <div class="ai-command">
+                    <input type="text" id="ai-input" placeholder="Type a command like 'turn on living room lights' or 'set bedroom AC to 22 degrees'">
+                    <button id="ai-submit">Send Command</button>
+                </div>
+                <div id="ai-response" class="ai-response"></div>
+            </section>
+
+            <!-- Device Control Section -->
+            <section class="devices-section">
+                <h2>🔌 Device Control</h2>
+                <div class="room-filter">
+                    <button class="filter-btn active" data-room="all">All Rooms</button>
+                    <button class="filter-btn" data-room="living_room">Living Room</button>
+                    <button class="filter-btn" data-room="bedroom">Bedroom</button>
+                    <button class="filter-btn" data-room="kitchen">Kitchen</button>
+                    <button class="filter-btn" data-room="entrance">Entrance</button>
+                </div>
+                <div id="devices-grid" class="devices-grid"></div>
+            </section>
+
+            <!-- Energy Monitoring Section -->
+            <section class="energy-section">
+                <h2>⚡ Energy Monitoring</h2>
+                <div id="energy-summary" class="energy-summary">
+                    <p>Loading energy data...</p>
+                </div>
+            </section>
+
+            <!-- Security Monitoring Section -->
+            <section class="security-section">
+                <h2>🔒 Security Events</h2>
+                <div id="security-events" class="security-events">
+                    <p>Loading security events...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Device Control Modal -->
+    <div id="device-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3 id="modal-device-name">Device Control</h3>
+            <div id="modal-controls"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html> 
